@@ -16,6 +16,12 @@ function App() {
   return (
     <>
       <h1 className="main-title">Advent Challenges 2024 - Paulo Llanos</h1>
+      <button
+        className="redirect-button"
+        onClick={() => navigate("/challenge-1")}
+      >
+        Challenge 1
+      </button>
     </>
   );
 }
