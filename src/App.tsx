@@ -2,6 +2,7 @@ import "./App.css";
 import { useStore } from "./store";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import challenges from "./utils/challenges.json";
 
 function App() {
   const navigate = useNavigate();
@@ -16,12 +17,15 @@ function App() {
   return (
     <>
       <h1 className="main-title">Advent Challenges 2024 - Paulo Llanos</h1>
-      <button
-        className="redirect-button"
-        onClick={() => navigate("/challenge-1")}
-      >
-        Challenge 1
-      </button>
+      {challenges.challenges.map((challenge) => (
+        <button
+          key={challenge.id}
+          className="redirect-button"
+          onClick={() => navigate(`/${challenge.route}`)}
+        >
+          {challenge.title}
+        </button>
+      ))}
     </>
   );
 }

@@ -1,0 +1,25 @@
+{
+  "challenges": [
+    {
+      "id": 1,
+      "title": "Challenge 1",
+      "description": "This is the first challenge",
+      "route": "challenge-1",
+      "component": "Challenge01"
+    },
+    {
+      "id": 2,
+      "title": "Challenge 2",
+      "description": "This is the second challenge",
+      "route": "challenge-2",
+      "component": "Challenge02"
+    },
+    {
+      "id": 3,
+      "title": "Challenge 3",
+      "description": "This is the third challenge",
+      "route": "challenge-3",
+      "component": "Challenge03"
+    }
+  ]
+}
