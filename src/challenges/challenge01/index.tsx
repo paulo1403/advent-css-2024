@@ -41,8 +41,10 @@ const Challenge01 = () => {
 
   const getImageClassName = (index: number, totalImages: number) => {
     if (totalImages === 4) {
-      // All images will be large when there are 4
       return "col-span-3 row-span-2";
+    }
+    if (totalImages === 3 && index === 2) {
+      return "col-span-6 row-span-1";
     }
     return index < 2 ? "col-span-3 row-span-2" : "col-span-2 row-span-1";
   };
@@ -74,14 +76,24 @@ const Challenge01 = () => {
     }
   };
 
+  const ExtraImagesOverlay = ({ count }: { count: number }) => (
+    <div className="absolute inset-0 flex items-center justify-center bg-black/70 rounded-lg">
+      <span className="text-white text-2xl font-bold">+{count}</span>
+    </div>
+  );
+
   return (
-    <div className="max-w-lg mx-auto p-4">
-      <div className="grid grid-cols-6 gap-2 bg-slate-900 p-4 rounded-xl">
-        {images.map((image, index) => (
+    <div className="mx-auto p-4">
+      <div className="w-[500px] h-[400px] grid grid-cols-6 gap-2 bg-slate-900 p-4 rounded-xl">
+        {images.slice(0, 5).map((image, index) => (
           <div
             key={index}
             className={`${image.className} relative overflow-hidden group ${
-              images.length === 4 || index < 2 ? "h-48" : "h-24"
+              images.length === 3 && index === 2
+                ? "h-32"
+                : images.length === 4 || index < 2
+                ? "h-48"
+                : "h-24"
             }`}
           >
             <div className="aspect-[3/2] relative h-full">
@@ -91,24 +103,27 @@ const Challenge01 = () => {
                 className="absolute inset-0 w-full h-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-teal-900/20 rounded-lg" />
+              {index === 4 && images.length > 5 && (
+                <ExtraImagesOverlay count={images.length - 5} />
+              )}
             </div>
           </div>
         ))}
+      </div>
 
-        <div className="col-span-6 flex justify-center gap-4 mt-4">
-          <button
-            onClick={handleAddImage}
-            className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
-          >
-            Add Image
-          </button>
-          <button
-            onClick={handleRemoveImage}
-            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-          >
-            Remove Image
-          </button>
-        </div>
+      <div className="col-span-6 flex justify-center gap-4 mt-4">
+        <button
+          onClick={handleAddImage}
+          className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
+        >
+          Add Image
+        </button>
+        <button
+          onClick={handleRemoveImage}
+          className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+        >
+          Remove Image
+        </button>
       </div>
     </div>
   );
