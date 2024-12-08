@@ -39,6 +39,14 @@ const Challenge01 = () => {
 
   const [images, setImages] = useState(initialImages);
 
+  const getImageClassName = (index: number, totalImages: number) => {
+    if (totalImages === 4) {
+      // All images will be large when there are 4
+      return "col-span-3 row-span-2";
+    }
+    return index < 2 ? "col-span-3 row-span-2" : "col-span-2 row-span-1";
+  };
+
   const handleAddImage = () => {
     const randomIndex = Math.floor(Math.random() * availableImages.length);
     const currentLength = images.length;
@@ -46,10 +54,18 @@ const Challenge01 = () => {
     const newImage = {
       src: availableImages[randomIndex],
       alt: `Image ${currentLength + 1}`,
-      className:
-        currentLength < 2 ? "col-span-3 row-span-2" : "col-span-2 row-span-1",
+      className: getImageClassName(currentLength, currentLength + 1),
     };
-    setImages([...images, newImage]);
+
+    if (currentLength === 3) {
+      const updatedImages = images.map((img, idx) => ({
+        ...img,
+        className: getImageClassName(idx, 4),
+      }));
+      setImages([...updatedImages, newImage]);
+    } else {
+      setImages([...images, newImage]);
+    }
   };
 
   const handleRemoveImage = () => {
@@ -65,7 +81,7 @@ const Challenge01 = () => {
           <div
             key={index}
             className={`${image.className} relative overflow-hidden group ${
-              index < 2 ? "h-48" : "h-24"
+              images.length === 4 || index < 2 ? "h-48" : "h-24"
             }`}
           >
             <div className="aspect-[3/2] relative h-full">
