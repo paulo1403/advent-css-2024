@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { ImageGrid } from "./components/ImageGrid";
+import { ActionButtons } from "./components/ActionButtons";
 import image1 from "./images/image01.jpg";
 import image2 from "./images/image02.jpg";
 import image3 from "./images/image03.jpg";
@@ -76,118 +78,18 @@ const Challenge01 = () => {
     }
   };
 
-  const ExtraImagesOverlay = ({ count }: { count: number }) => (
-    <div className="absolute inset-0 flex items-center justify-center bg-black/70 rounded-lg">
-      <span className="text-white text-2xl font-bold">+{count}</span>
-    </div>
-  );
-
   return (
     <div className="mx-auto p-4">
-      <div className="w-[568px] bg-slate-900 p-4 rounded-xl">
-        {images.length === 1 ? (
-          <div className="h-[320px]">
-            <div className="relative overflow-hidden group h-full">
-              <div className="relative h-full">
-                <img
-                  src={images[0].src}
-                  alt={images[0].alt}
-                  className="absolute inset-0 w-full h-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-teal-900/20 rounded-lg" />
-              </div>
-            </div>
-          </div>
-        ) : images.length === 2 ? (
-          <div className="grid grid-cols-2 gap-2 h-[320px]">
-            {images.map((image, index) => (
-              <div
-                key={index}
-                className="relative overflow-hidden group h-full"
-              >
-                <div className="relative h-full">
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="absolute inset-0 w-full h-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-teal-900/20 rounded-lg" />
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="grid grid-rows-2 gap-2 h-auto">
-            <div className="grid grid-cols-2 gap-2">
-              {images.slice(0, 2).map((image, index) => (
-                <div
-                  key={index}
-                  className={`relative overflow-hidden group ${
-                    images.length <= 2 ? "h-[320px]" : "h-40"
-                  }`}
-                >
-                  <div className="relative h-full">
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      className="absolute inset-0 w-full h-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-teal-900/20 rounded-lg" />
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {images.length > 2 && (
-              <div
-                className={`grid gap-2 ${
-                  images.length === 4
-                    ? "grid-cols-2"
-                    : images.length === 3
-                    ? "grid-cols-1"
-                    : "grid-cols-3"
-                }`}
-              >
-                {images.slice(2, 5).map((image, index) => (
-                  <div
-                    key={index + 2}
-                    className={`relative overflow-hidden group h-40 ${
-                      images.length === 3 ? "col-span-full" : ""
-                    }`}
-                  >
-                    <div className="relative h-full">
-                      <img
-                        src={image.src}
-                        alt={image.alt}
-                        className="absolute inset-0 w-full h-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-teal-900/20 rounded-lg" />
-                      {index === 2 && images.length > 5 && (
-                        <ExtraImagesOverlay count={images.length - 5} />
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
+      <div className="col-span-6 flex flex-col items-center gap-2 mb-4">
+        <h1 className="text-2xl font-bold text-center">Challenge 01</h1>
+        <p className="text-center text-gray-500">
+          Click on the buttons to add or remove images
+        </p>
       </div>
-
-      <div className="col-span-6 flex justify-center gap-4 mt-4">
-        <button
-          onClick={handleAddImage}
-          className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
-        >
-          Add Image
-        </button>
-        <button
-          onClick={handleRemoveImage}
-          className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-        >
-          Remove Image
-        </button>
+      <div className="w-[568px] bg-slate-900 p-4 rounded-xl mx-auto">
+        <ImageGrid images={images} />
       </div>
+      <ActionButtons onAdd={handleAddImage} onRemove={handleRemoveImage} />
     </div>
   );
 };
