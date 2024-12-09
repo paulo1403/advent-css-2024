@@ -8,45 +8,10 @@ body {
   font-family: "Montserrat", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f5f5f5;
-}
-
-.main-title {
-  color: #333;
-  font-size: 24px;
 }
 
 @layer utilities {
   .bg-christmas-gradient {
     background: linear-gradient(to bottom, #1a472a, #0f172a);
-  }
-  
-  .snowfall {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .snowfall::before {
-    content: '';
-    position: fixed;
-    top: -10px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-      radial-gradient(4px 4px at 100px 50px, #fff .5px, transparent .5px),
-      radial-gradient(3px 3px at 200px 150px, #fff .5px, transparent .5px),
-      radial-gradient(4px 4px at 300px 250px, #fff .5px, transparent .5px),
-      radial-gradient(3px 3px at 400px 350px, #fff .5px, transparent .5px);
-    background-size: 400px 400px;
-    animation: snowfall 6s linear infinite;
-    opacity: 0.5;
-    pointer-events: none;
-  }
-
-  @keyframes snowfall {
-    to {
-      transform: translateY(400px);
-    }
   }
 }
