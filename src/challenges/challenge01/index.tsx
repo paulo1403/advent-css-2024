@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ImageGrid } from "./components/ImageGrid";
 import { ActionButtons } from "./components/ActionButtons";
 import image1 from "./images/image01.jpg";
@@ -9,6 +10,7 @@ import image5 from "./images/image05.jpg";
 import image6 from "./images/image06.jpg";
 
 const Challenge01 = () => {
+  const navigate = useNavigate();
   const availableImages = [image1, image2, image3, image4, image5, image6];
 
   const initialImages = [
@@ -81,6 +83,12 @@ const Challenge01 = () => {
   return (
     <div className="mx-auto p-4">
       <div className="col-span-6 flex flex-col items-center gap-2 mb-4">
+        <button
+          onClick={() => navigate("/")}
+          className="absolute left-4 top-4 px-4 py-2 bg-slate-700 text-white rounded hover:bg-slate-600"
+        >
+          ← Back
+        </button>
         <h1 className="text-2xl font-bold text-center">Challenge 01</h1>
         <p className="text-center text-gray-500">
           Click on the buttons to add or remove images
