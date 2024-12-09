@@ -8,6 +8,7 @@ import image3 from "./images/image03.jpg";
 import image4 from "./images/image04.jpg";
 import image5 from "./images/image05.jpg";
 import image6 from "./images/image06.jpg";
+import { ArrowLeft } from "lucide-react";
 
 const Challenge01 = () => {
   const navigate = useNavigate();
@@ -85,9 +86,9 @@ const Challenge01 = () => {
       <div className="col-span-6 flex flex-col items-center gap-2 mb-4">
         <button
           onClick={() => navigate("/")}
-          className="absolute left-4 top-4 px-4 py-2 bg-slate-700 text-white rounded hover:bg-slate-600"
+          className="absolute left-4 top-4 px-4 py-2 bg-slate-700 text-white rounded hover:bg-slate-600 flex gap-2"
         >
-          ← Back
+          <ArrowLeft /> Back
         </button>
         <h1 className="text-2xl font-bold text-center">Challenge 01</h1>
         <p className="text-center text-gray-500">
