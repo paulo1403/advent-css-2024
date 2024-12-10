@@ -6,6 +6,7 @@ export default {
       animation: {
         "fade-in": "fade-in 0.3s ease-in-out",
         "fade-in-up": "fadeInUp 0.5s ease-out forwards",
+        "scale-progress": "scaleProgress auto linear",
       },
       keyframes: {
         fadeIn: {
@@ -15,6 +16,10 @@ export default {
         fadeInUp: {
           "0%": { opacity: "0", transform: "translateY(20px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        scaleProgress: {
+          "0%": { transform: "scaleX(0)" },
+          "100%": { transform: "scaleX(1)" },
         },
       },
     },
